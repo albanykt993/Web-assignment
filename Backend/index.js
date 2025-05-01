@@ -1,16 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-
+const cors = require('cors');
 const authRoutes = require("./routes/authRoutes");
 const taskRoutes = require("./routes/taskRoutes");
-dotenv.config();
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
+dotenv.config();
 
 mongoose.connect("mongodb+srv://albanykt993:albanykt993@cluster0.sirbea9.mongodb.net/IUT?retryWrites=true&w=majority&appName=Cluster0").then(() =>{
     console.log("Connected to MongoDB");
